@@ -1,0 +1,55 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #4a4a4a;
+    margin: 0px;
+}
+
+footer {
+    padding: 0px 10px;
+}
+
+.main {
+    margin: auto;
+    alignment: center;
+    padding: 50px 10px 10px 10px;
+}
+
+.welcome-header {
+    text-align: center;
+    border-bottom: 2px solid #e1e1e1;
+    max-width: 960px;
+    margin: auto auto 10px;
+}
+
+.welcome-header h1{
+    font-size: 36px;
+}
+
+h1 a,h2 a,h3 a {
+    text-decoration: underline;
+    color: black;
+}
+
+.post-tags {
+    margin: 5px;
+}
+.post-tag {
+    border-radius: 5px;
+    background-color: #0011b2;
+    color: white;
+    padding: 8px;
+    margin: 5px;
+}
+
+#import-json {
+    display: inline;
+}
+
+#import-json br {
+    display: none;
+}
+
+#import-json div {
+    display: inline;
+}

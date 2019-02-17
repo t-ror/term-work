@@ -1,0 +1,56 @@
+<?php if(!empty($_SESSION['message'])): ?>
+    <div class="form-messages">
+        <ul>
+            <?php foreach ($_SESSION['message'] as $message) : ?>
+                <li><?= $message ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+<form id="<?= $this->getName() ?>" method="<?= $this->getMethod() ?>" action="<?= $this->getAction() ?>" enctype="<?= $this->getEnctype() ?>">
+        <?php foreach ($this->getElements() as $element) : ?>
+            <div id="block-<?= $element['name']?>" class="block-<?php if(isset($element['options']['type'])) :?><?= $element['options']['type'] ?><?php endif; ?>">
+                <?php if($element['label'] !== '') : ?>
+                    <label for="<?= $element['name'] ?>"><?= $element['label'] ?></label>
+                <?php if($element['options']['type'] !== 'checkbox') :?>
+                    <br>
+                <?php endif; ?>
+                <?php endif; ?>
+                <?php switch ($element['tag']) :
+                    case 'input': ?>
+                        <input type="<?= $element['options']['type'] ?>"
+                               name="<?= $element['name'] ?>"
+                               id="<?= $element['name'] ?>"
+                               value="<?= $element['value'] ?>"
+                               class="<?= $element['options']['class'] ?>"
+                            <?php if($element['options']['type'] === 'checkbox') :?>
+                                <?php if(isset($element['options']['checked'])) : ?>
+                                    <?php if($element['options']['checked'] == true) : ?>
+                                        checked
+                                    <?php endif ?>
+                                <?php endif ?>
+                            <?php endif ?>>
+                        <?php break; ?>
+                    <?php case 'textArea': ?>
+                        <textarea
+                                name="<?= $element['name'] ?>"
+                                id="<?= $element['name'] ?>"
+                                cols="<?= $element['options']['cols'] ?>"
+                                rows="<?= $element['options']['rows'] ?>"
+                                class="<?= $element['options']['class'] ?>"
+                        ><?= $element['value'] ?></textarea>
+                        <?php break; ?>
+                    <?php case 'select': ?>
+                        <select
+                                name="<?= $element['name'] ?>"
+                                id="<?= $element['name'] ?>"
+                                class="<?= $element['options']['class'] ?>">
+                            <?php foreach ($element['options']['options'] as $option) : ?>
+                                <option value="<?= $option['value'] ?>" <?= $option['selected'] ?>><?= $option['name'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?php break; ?>
+                    <?php endswitch; ?>
+            </div>
+        <?php endforeach ?>
+ </form>
